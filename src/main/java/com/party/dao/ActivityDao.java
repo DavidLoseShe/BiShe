@@ -29,15 +29,9 @@ public class ActivityDao implements IActivityDao{
         String hql2="select count(*) from ActivityInformation a,Joinactivity b where( a.activityKind ='"+activityType+" ' or '所有'='"+activityType+" ')and a.activityState='"+activityState+"'and  a.activityId=b.activityiid and b.peopleiid='"+peopleid+"' ";
         if(activityRelation.equals("所有")){
             query = session.createQuery(hql1);
-/*            query.setParameter(1, activityType);
-            query.setParameter(2, activityType);
-            query.setParameter(3, activityState);*/
         }
         else {
             query = session.createQuery(hql2);
-/*            query.setParameter(1, activityType);
-            query.setParameter(2, activityState);
-            query.setParameter(3, peopleid);*/
         }
         Long aLong=(Long)query.uniqueResult();
         recordCount=aLong.intValue();
