@@ -10,6 +10,11 @@
 
 <!-- Bootstrap -->
 <link rel="stylesheet" href="bootstrap-3.3.7/dist/css/bootstrap.css">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-3.2.1.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap-3.3.7/dist/js/bootstrap.js"></script>
+    <script src="js/ActivityJs.js"></script>
   <style type="text/css">
     *{ margin: 0; padding: 0; }
     body,html{ height: 100%;
@@ -46,7 +51,7 @@
         <li><a href="#">Link</a></li>
         -->
         <li><a href="Javascript: void(0)" onclick="Message()">消息 <span class="badge" id="MessageContent">0</span></a></li>
-        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id ="user"> ${stduent.studentName}<span class="caret"></span></a>
+        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id ="user"> ${username}<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="Javascript: void(0)" data-toggle="modal" data-target="#myModal" >个人信息</a></li>
             <li><a href="#">修改密码</a></li>
@@ -205,9 +210,9 @@
   <div class="row">
 <div class="col-xs-6 col-sm-6 col-lg-4 col-md-4"> <span class="text-right">
       </span>
-  <h3>About Us</h3>
+  <h3>About us</h3>
   <hr>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque, consequatur neque exercitationem distinctio esse! Cupiditate doloribus a consequatur iusto illum eos facere vel iste iure maxime. Velit, rem, sunt obcaecati eveniet id nemo molestiae. In.</p>
+  <p>致力于开发本系统，由暴躁的小皮开发</p>
 </div>
 <div class="col-xs-6 col-sm-6 col-lg-4 col-md-4 hidden-sm hidden-xs"> <span class="text-right"> </span>
   <h3>Latest News</h3>
@@ -215,8 +220,7 @@
   <div class="media-object-default">
   <div class="media">
   <div class="media-body">
-        <h4 class="media-heading">Heading 1</h4>
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, quod temporibus veniam deserunt deleniti accusamus voluptatibus at illo sunt quisquam. </div>
+严惩恶意刷鲜花的用户，将受到正义的制裁：天降正义 </div>
       <div class="media-right"> <a href="#"> <img class="media-object" src="images/75X.gif" alt="placeholder image"></a></div>
 </div>
 </div>
@@ -224,12 +228,11 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, quod temporib
 <div class="col-xs-6 col-sm-6 col-lg-4 col-md-4"> <span class="text-right"> </span>
   <h3>Contact Us</h3>
   <hr>
-
     <address>
       <strong>MyStoreFront, Inc.</strong><br>
-      Indian Treasure Link<br>
-      Quitman, WA, 99110-0219<br>
-  <abbr title="Phone">P:</abbr> (123) 456-7890
+      781850123 Link<br>
+      guhao, WA, 99110-0219<br>
+  <abbr title="Phone">P:</abbr> (123)123-45678
       </address>
 </div>
   </div>
@@ -328,11 +331,74 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, quod temporib
     </div>
   </div><!-- /.modal-content -->
 </div>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
-<script src="js/jquery-3.2.1.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed --> 
-<script src="bootstrap-3.3.7/dist/js/bootstrap.js"></script>
-<script src="js/ActivityJs.js"></script>
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog " style="width:700px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabe3"><div><h2>用户信息</h2></div></h4>
+            </div>
+            <div class="modal-body">
+                <div style="padding: 20px 20px 20px 20px;">
+                    <form class="bs-example bs-example-form" role="form" action="StudentLogin.action" method="post">
+                        <div class="container" style="font-size:large">
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-2 text-right" >用户名： </div>
+                                <input  class="eee" type="text"  value="admin"  maxlength="10" readonly>
+
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-2 text-right" >姓名：</div>
+                                <input class="eee" type="text"  value="admin"  maxlength="10" readonly>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-2 text-right"> 班级：</div>
+                                <input  class="eee" type="text"  value="admin"  maxlength="10" readonly>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-2 text-right">QQ：</div>
+                                <input class="eee" type="text"  value="admin"  maxlength="10" readonly>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-2 text-right"> 鲜花数：</div>
+                                <input class="eee" type="text"  value="admin"  maxlength="10" readonly>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-2 text-right">个性签名：</div>
+                                <input class="eee" type="text"  value="admin"  maxlength="10" readonly>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-2 text-right">上次登录时间：</div>
+                                <input class="eee" type="text"  value="admin"  maxlength="10" readonly>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-2"></div>
+                                <div class="col-lg-2"><a class="btn btn-default btn-lg"  role="button" >修改</a></div>
+                                <div class="col-lg-8"><a class="btn btn-default btn-lg"  role="button" >退出</a></div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div><!-- /.modal-content -->
+</div>
 
 </body>
 </html>

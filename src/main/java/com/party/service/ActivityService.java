@@ -5,6 +5,9 @@ import com.party.entity.ActivityInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,7 +27,25 @@ private ActivityDao activityDao;
         List<ActivityInformation> activityInformations;
 
         activityInformations=activityDao.QueryActivityInfo(pageNo,activityType,activityState,activityRelation,peopleid);
-        System.out.print(activityType);
+        SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        for (ActivityInformation activityInformation:activityInformations) {
+            if (activityInformation.getActivityStartTime() != null) {
+                try {
+                    Date date = format.parse(activityInformation.getActivityStartTime());
+                    new SimpleDateFormat("MM月dd日 HH:mm").format(date);
+                    activityInformation.setActivityStartTime(new SimpleDateFormat().format(date));
+
+                    date = format.parse(activityInformation.getActivityEndTime());
+                    new SimpleDateFormat("MM月dd日 HH:mm").format(date);
+                    activityInformation.setActivityEndTime(new SimpleDateFormat().format(date));
+                } catch (ParseException e) {
+                }
+            }
+        }
         return  activityInformations;
+    }
+    public List<ActivityInformation> AdminQueryActivityInfoList(){
+      List<ActivityInformation> activityInformations=  activityDao.AdminQueryActivityInfoList();
+       return  activityInformations;
     }
 }

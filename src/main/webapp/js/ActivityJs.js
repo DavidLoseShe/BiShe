@@ -2,10 +2,10 @@
  * Created by d on 2017/7/13.
  */
 $(document).ready(function () {
-/*    MessageContent();
+    MessageContent();
     setInterval(function() {
         $("#MessageContent").load(MessageContent());
-    }, 50000);*/
+    }, 10000);
 
     $("#previousPage").click(function () {
         var btn="加入我们";
@@ -34,10 +34,10 @@ $(document).ready(function () {
                 if(pNo<pageCount) document.getElementById("nextPage").style.visibility="visible";
                 $("#pageNo").text(pNo);
                 $("#activityList").html("");
-                if(data.size==0){
+                if(data.length==0){
                     $("#activityList").html("抱歉，暂时没有此类活动");
                 }
-                var tt="<div class='row'>";
+              else{   var tt="<div class='row'>";
                 $.each(data,function(i,value){
                     var imgSrc="images/400X200.gif";
                     if(value.activityKind=="运动"){
@@ -64,20 +64,19 @@ $(document).ready(function () {
                         +"  <div class='caption'>"
                         +" <h3>"+value.activityName+"</h3>"
                         + "<p>"+value.activityContent+"</p>"
+                        + "<p>开始时间:"+value.activityStartTime+"</p>"
+                        + "<p>结束时间:"+value.activityEndTime+"</p>"
+                        + "<p class='text-right'>发布人：<a href='#' data-toggle='tooltip' data-placement='right' title='查看' >"+value.activityPeopleId+"</a></p>"
                         +" <hr>"
                         +" <p class='text-center'><a href='Activity.action?activityId="+ value.activityId+"' class='btn btn-success'role='button'>"+btn+"</a></p>"
                         +"</div>"
                         +"</div>"
                         +"</div>";
-                    /*                    $("#content").append("<tr>"
-                     +"<td>"+value.activityId+"</td>"
-                     /!*   +"<td>"+value.activityName+"</td>"
-                     +"<td>"+value.activityFristDate+"</td>"*!/
-                     + "<td>"+value.activityContent+"</td></tr>");*/
 
                 });
                 tt=tt+"</div>";
                 $("#activityList").append(tt);
+                }
             }
         });
     });
@@ -108,10 +107,10 @@ $(document).ready(function () {
                 $("#pageNo").text(pNo);
 
                 $("#activityList").html("");
-                if(data.size==0){
+                if(data.length==0){
                     $("#activityList").html("抱歉，暂时没有此类活动");
                 }
-                var tt="<div class='row'>";
+               else{  var tt="<div class='row'>";
                 $.each(data,function(i,value){
                     var imgSrc="images/400X200.gif";
                     if(value.activityKind=="运动"){
@@ -138,20 +137,19 @@ $(document).ready(function () {
                         +"  <div class='caption'>"
                         +" <h3>"+value.activityName+"</h3>"
                         + "<p>"+value.activityContent+"</p>"
+                        + "<p>开始时间:"+value.activityStartTime+"</p>"
+                        + "<p>结束时间:"+value.activityEndTime+"</p>"
+                        + "<p class='text-right'>发布人：<a href='#'data-toggle='tooltip' data-placement='right' title='查看'>"+value.activityPeopleId+"</a></p>"
                         +" <hr>"
                         +" <p class='text-center'><a href='Activity.action?activityId="+ value.activityId+"' class='btn btn-success'role='button'>"+btn+"</a></p>"
                         +"</div>"
                         +"</div>"
                         +"</div>";
-                    /*                    $("#content").append("<tr>"
-                     +"<td>"+value.activityId+"</td>"
-                     /!*   +"<td>"+value.activityName+"</td>"
-                     +"<td>"+value.activityFristDate+"</td>"*!/
-                     + "<td>"+value.activityContent+"</td></tr>");*/
 
                 });
                 tt=tt+"</div>";
                 $("#activityList").append(tt);
+                }
             }
         });
     });
@@ -183,9 +181,10 @@ function chaxun(){
             if(pageCount>pNo)　document.getElementById("nextPage").style.visibility="visible";
             $("#pageNo").text(1);
             $("#activityList").html("");
-            if(data.size==0){
+            if(data.length==0){
                 $("#activityList").html("抱歉，暂时没有此类活动");
             }
+            else{
             var tt="<div class='row'>";
             $.each(data,function(i,value){
                 var imgSrc="images/400X200.gif";
@@ -213,31 +212,30 @@ function chaxun(){
                     +"  <div class='caption'>"
                     +" <h3>"+value.activityName+"</h3>"
                     + "<p>"+value.activityContent+"</p>"
+                    + "<p>开始时间:"+value.activityStartTime+"</p>"
+                    + "<p>结束时间:"+value.activityEndTime+"</p>"
+                    + "<p class='text-right'>发布人：<a href='#'data-toggle='tooltip' data-placement='right' title='查看'>"+value.activityPeopleId+"</a></p>"
                     +" <hr>"
                     +" <p class='text-center'><a href='Activity.action?activityId="+ value.activityId+"' class='btn btn-success'role='button'>"+btn+"</a></p>"
                     +"</div>"
                     +"</div>"
                     +"</div>";
-                /*                    $("#content").append("<tr>"
-                 +"<td>"+value.activityId+"</td>"
-                 /!*   +"<td>"+value.activityName+"</td>"
-                 +"<td>"+value.activityFristDate+"</td>"*!/
-                 + "<td>"+value.activityContent+"</td></tr>");*/
 
             });
             tt=tt+"</div>";
             $("#activityList").append(tt);
+            }
         }
     });
 }
 function MessageContent(){
     $.ajax({
-        url:"MessageMessageContentAction.action",
+        url:"messageAmount",
         type:"post",
         data:"",
         dateType:"json",
         success:function (data) {
-            $("#MessageContent").text(data.messageContent);
+            $("#MessageContent").text(data);
         }
     });
 

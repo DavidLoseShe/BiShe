@@ -26,7 +26,7 @@ public class ActivityDao implements IActivityDao{
         Session session=getCurrentSession();
         Query query;
         String hql1="select count(*) from ActivityInformation where( activityKind ='"+activityType+" 'or '所有'='"+activityType+"')and activityState='"+activityState+"'";
-        String hql2="select count(*) from ActivityInformation a,Joinactivity b where( a.activityKind ='"+activityType+" ' or '所有'='"+activityType+" ')and a.activityState='"+activityState+"'and  a.activityId=b.activityiid and b.peopleiid='"+peopleid+"' ";
+        String hql2="select count(*) from ActivityInformation a,JoinActivity b where( a.activityKind ='"+activityType+" ' or '所有'='"+activityType+" ')and a.activityState='"+activityState+"'and  a.activityId=b.activityiid and b.peopleiid='"+peopleid+"' ";
         if(activityRelation.equals("所有")){
             query = session.createQuery(hql1);
         }
@@ -52,7 +52,7 @@ public class ActivityDao implements IActivityDao{
         Session session= getCurrentSession();
         Query query;
         String hql ="from ActivityInformation a  where( a.activityKind ='"+activityType+" ' or '所有'='"+activityType+" ')and a.activityState='"+activityState+"'";
-        String hql2=" from ActivityInformation a , Joinactivity b where( a.activityKind ='"+activityType+" ' or '所有'='"+activityType+" ')and a.activityState='"+activityState+"' and  a.activityId=b.activityiid and b.peopleiid='"+peopleid+"'  ";
+        String hql2=" from ActivityInformation a , JoinActivity b where( a.activityKind ='"+activityType+" ' or '所有'='"+activityType+" ')and a.activityState='"+activityState+"' and  a.activityId=b.activityiid and b.peopleiid='"+peopleid+"'  ";
         if(activityRelation.equals("所有")){
             query = session.createQuery(hql);
 
@@ -76,6 +76,16 @@ public class ActivityDao implements IActivityDao{
         return activityInformationList;
 
     }
+
+    @Override
+    public List<ActivityInformation> AdminQueryActivityInfoList() {
+        Session session=getCurrentSession();
+        Query query=   session.createQuery("from ActivityInformation");
+        List<ActivityInformation> activityInformationList =query.list();
+        session.close();
+        return activityInformationList;
+    }
+
     public void flush() {
         getCurrentSession().flush();
     }

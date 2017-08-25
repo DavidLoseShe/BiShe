@@ -15,15 +15,15 @@ var TableInit = function () {
             type: "post",
             dataType: "json",
             success: function (value) {
-
-                var obj = [];
+                /*Struts 就用这个object*/
+/*                var obj = [];
                 $.each(value.activityInformationList, function (i, d) {
                     obj.push(d);
                     // alert(obj.coursename);
-                });
+                });*/
                 $table = $('#tb_departments').bootstrapTable(
                     {
-                        data: obj, //最终的JSON数据放在这里
+                        data: value, //最终的JSON数据放在这里
                         height: 500, //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
                         toolbar: '#toolbar',
                         striped: true,
@@ -215,14 +215,14 @@ var StudentTable = function () {
             type: "post",
             dataType: "json",
             success: function (value) {
-
+/*
                 var obj = [];
                 $.each(value.studentinformationList, function (i, d) {
                     obj.push(d);
-                });
+                });*/
                 $table = $('#tb_departments').bootstrapTable(
                     {
-                        data: obj, //最终的JSON数据放在这里
+                        data: value, //最终的JSON数据放在这里
                         height: 500, //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
                         toolbar: '#toolbar',
                         striped: true,
@@ -349,7 +349,7 @@ function ActivityInformationTable() {
     $("#table").html("<table id='tb_departments'></table>");
 
     var oTable = new TableInit();
-    oTable.SInit("AdminActivityAdminQueryActivityInfoAction.action");
+    oTable.SInit("AdminQueryActivityList");
 }
 function StudentInformationTable() {
     $("#table").html("<table id='tb_departments'></table>");

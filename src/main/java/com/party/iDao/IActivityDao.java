@@ -10,4 +10,5 @@ import java.util.List;
 public interface IActivityDao {
     int GetPage(String activityType,String activityState,String activityRelation,String peopleId);
     List<ActivityInformation> QueryActivityInfo(int pageNo,String activityType,String activityState,String activityRelation,String peopleid);
+    List<ActivityInformation> AdminQueryActivityInfoList();
 }
