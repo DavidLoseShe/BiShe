@@ -2,10 +2,25 @@
  * Created by d on 2017/7/13.
  */
 $(document).ready(function () {
-    MessageContent();
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "positionClass": "toast-top-center",
+        "onclick": null,
+        "preventDuplicates": true,//是否阻止弹出多个消息框
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "2000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+/*    MessageContent();
     setInterval(function() {
         $("#MessageContent").load(MessageContent());
-    }, 10000);
+    }, 10000);*/
 
     $("#previousPage").click(function () {
         var btn="加入我们";
@@ -153,9 +168,21 @@ $(document).ready(function () {
             }
         });
     });
+    StudentName();
     chaxun();
 
 });
+function StudentName(){
+    $.ajax({
+        url: "QueryStudentName",
+        type: "post",
+        data: "",
+        dateType: "json",
+        success: function (data) {
+            $("#user").html(data);
+        }
+    });
+}
 function chaxun(){
     var btn="加入我们";
     var pNo= 1;
@@ -272,6 +299,7 @@ function read(id) {
     });
 }
 function exitSystem(){
+    window.location.href="ExitSystem.do";
 
 }
 function PerpsonActivity() {
@@ -284,4 +312,162 @@ function PerpsonActivity() {
             
         }
     });
+}
+//QI
+function  QueryPersonalInfo() {
+    $.ajax({
+        url:"StudentInfo",
+        type:"post",
+        data:"",
+        dateType:"json",
+        success:function (data) {
+            $("#myModal").modal();
+            $("#userId").text(data.studentId);
+            $("#userName").text(data.studentName);
+            $("#userQQ").text(data.stduentQq);
+            $("#userFlower").text(data.studentflower);
+            $("#userClass").text(data.studentClass);
+            $("#userSay").text(data.studentSay);
+            $("#loginTime").text(data.studentLoginTime)
+        }
+    });
+}
+function changeOrderTime(){
+    var spanValue1 = $("#userSay").text();
+    $("#userSaytest").val(spanValue1);
+    $("#userSaytest").show();
+    $("#userSay").hide();
+
+    var spanValue2 = $("#userName").text();
+    $("#userNametest").val(spanValue2);
+    $("#userNametest").show();
+    $("#userName").hide();
+
+    var spanValue3 = $("#userQQ").text();
+    $("#userQQtest").val(spanValue3);
+    $("#userQQtest").show();
+    $("#userQQ").hide();
+
+    var spanValue5 = $("#userClass").text();
+    $("#userClasstest").val(spanValue5);
+    $("#userClasstest").show();
+    $("#userClass").hide();
+
+    $("#changeOrderTime").hide();
+    $("#timeChangeOK").show();
+}
+function ModifyEnter() {
+
+
+    sweetAlert({
+        title: "Are you sure?",
+        text: "You will modify this information!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, modify it!",
+        closeOnConfirm: true
+    }, function(){
+        ModifyPersonalInfo();
+    });
+
+}
+
+function ModifyPersonalInfo() {
+
+    var inputValue1 = $("#userSaytest").val();
+    $("#userSay").text(inputValue1);
+    $("#userSaytest").hide();
+    $("#userSay").show();
+
+    var inputValue2 = $("#userNametest").val();
+    $("#userName").text(inputValue2);
+    $("#userNametest").hide();
+    $("#userName").show();
+
+    var inputValue3 = $("#userQQtest").val();
+    $("#userQQ").text(inputValue3);
+    $("#userQQtest").hide();
+    $("#userQQ").show();
+
+    var inputValue5 = $("#userClasstest").val();
+    $("#userClass").text(inputValue5);
+    $("#userClasstest").hide();
+    $("#userClass").show();
+    $("#changeOrderTime").show();
+    $("#timeChangeOK").hide();
+
+    $.ajax({
+        url:"ModifyStudentInfo",
+        type:"post",
+        data:{'studentSay':$('#userSaytest').val(),
+            'studentName':$("#userNametest").val(),
+            'studentQQ':$("#userQQtest").val(),
+            'studentClass':$("#userClasstest").val()},
+        dateType:"json",
+
+        success:function (data) {
+            $("#myModal").modal("hide");
+            toastr["success"]("你的修改成功!","提示");
+        }
+    });
+
+}
+function CheckInfoFormat() {
+
+    var Sname=$("#userNametest").val();
+    var nameFormat=/^[\u4E00-\u9FA5]{0,30}$/;
+    if (Sname.search(nameFormat)==-1){
+
+        $("#nameFormat").html("格式不正确");
+        // $("#timeChangeOK").disabled="false";
+        $("#noSubmit").show();
+        $("#timeChangeOK").hide();
+    }
+    if (Sname.search(nameFormat)!=-1) {
+        $("#nameFormat").html("");
+        $("#noSubmit").hide();
+        $("#timeChangeOK").show();
+    }
+
+    var Sclass=$("#userClasstest").val();
+    var classFormat=/^[\u4E00-\u9FA5]{0,30}$/;
+    if (Sclass.search(classFormat)==-1){
+        $("#classFormat").html("格式不正确");
+        $("#noSubmit").show();
+        $("#timeChangeOK").hide();
+    }
+    if (Sclass.search(classFormat)!=-1) {
+        $("#classFormat").html("");
+        $("#noSubmit").hide();
+        $("#timeChangeOK").show();
+    }
+
+    var Ssay=$("#userSaytest").val();
+    var sayFormat=/^[\u4E00-\u9FA5]{0,30}$/;
+    if (Ssay.search(sayFormat)==-1){
+        $("#sayFormat").html("格式不正确");
+        $("#noSubmit").show();
+        $("#timeChangeOK").hide();
+    }
+    if (Ssay.search(sayFormat)!=-1) {
+        $("#sayFormat").html("");
+        $("#noSubmit").hide();
+        $("#timeChangeOK").show();
+    }
+
+    var Sqq=$("#userQQtest").val();
+    var qqFormat=/^[0-9]{0,12}$/;
+    if (Sqq.search(qqFormat)==-1){
+        $("#qqFormat").html("格式不正确");
+        $("#noSubmit").show();
+        $("#timeChangeOK").hide();
+    }
+    if (Sqq.search(qqFormat)!=-1) {
+        $("#qqFormat").html("");
+        $("#noSubmit").hide();
+        $("#timeChangeOK").show();
+    }
+
+
 }

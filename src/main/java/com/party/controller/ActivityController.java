@@ -1,7 +1,6 @@
 package com.party.controller;
 
 import com.party.entity.ActivityInformation;
-import com.party.entity.StudentInformation;
 import com.party.service.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,16 +21,15 @@ public class ActivityController {
     @ResponseBody
     @RequestMapping("activityList")
     public List<ActivityInformation> ActivityInformationList(String activityPeopleId, String activityType, String activityState, String activityRelation, int pageNo, HttpSession session){
-        StudentInformation studentInformation= (StudentInformation) session.getAttribute("User");
-        List<ActivityInformation> activityInformations=activityService.activityInformationList(pageNo,activityType,activityState,activityRelation,studentInformation.getStudentId());
-
+        String studentId= (String) session.getAttribute("User");
+        List<ActivityInformation> activityInformations=activityService.activityInformationList(pageNo,activityType,activityState,activityRelation,studentId);
         return activityInformations;
     }
     @ResponseBody
     @RequestMapping("page")
     public int Page(String activityPeopleId,String activityType,String activityState,String activityRelation,HttpSession session){
-        StudentInformation studentInformation= (StudentInformation) session.getAttribute("User");
-      int  page= activityService.getPage( activityType,activityState,activityRelation,studentInformation.getStudentId());
+        String  studentId= (String ) session.getAttribute("User");
+      int  page= activityService.getPage( activityType,activityState,activityRelation,studentId);
       return page;
     }
 

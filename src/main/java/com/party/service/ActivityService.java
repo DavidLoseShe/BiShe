@@ -5,9 +5,6 @@ import com.party.entity.ActivityInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,7 +24,7 @@ private ActivityDao activityDao;
         List<ActivityInformation> activityInformations;
 
         activityInformations=activityDao.QueryActivityInfo(pageNo,activityType,activityState,activityRelation,peopleid);
-        SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+/*        SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         for (ActivityInformation activityInformation:activityInformations) {
             if (activityInformation.getActivityStartTime() != null) {
                 try {
@@ -41,7 +38,7 @@ private ActivityDao activityDao;
                 } catch (ParseException e) {
                 }
             }
-        }
+        }*/
         return  activityInformations;
     }
     public List<ActivityInformation> AdminQueryActivityInfoList(){

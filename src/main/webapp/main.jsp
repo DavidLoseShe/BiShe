@@ -10,12 +10,16 @@
 
 <!-- Bootstrap -->
 <link rel="stylesheet" href="bootstrap-3.3.7/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="css/sweetalert.css">
+    <link href="css/toastr.css" rel="stylesheet"/>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery-3.2.1.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap-3.3.7/dist/js/bootstrap.js"></script>
     <script src="js/ActivityJs.js"></script>
-  <style type="text/css">
+    <script src="js/toastr.js"></script>
+    <script src="js/sweetalert.min.js"></script>
+<%--  <style type="text/css">
     *{ margin: 0; padding: 0; }
     body,html{ height: 100%;
       background-image: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1502379771162&di=2515ee3bcb7bab7c6e12b1cd3916c399&imgtype=0&src=http%3A%2F%2Fimg3.redocn.com%2Ftupian%2F20151106%2Fdansechouxiangduobianxingbeijingtupian_5263726.jpg");
@@ -28,7 +32,7 @@
    border-style:none ;
 
  }
-  </style>
+  </style>--%>
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -51,9 +55,9 @@
         <li><a href="#">Link</a></li>
         -->
         <li><a href="Javascript: void(0)" onclick="Message()">消息 <span class="badge" id="MessageContent">0</span></a></li>
-        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id ="user"> ${username}<span class="caret"></span></a>
+        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id ="user"> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="Javascript: void(0)" data-toggle="modal" data-target="#myModal" >个人信息</a></li>
+              <li><a href="Javascript: void(0)" data-toggle="modal" data-target="#myModal"  onclick="QueryPersonalInfo()">个人信息</a></li>
             <li><a href="#">修改密码</a></li>
             <li><a href="PersonActivity.jsp">个人发布活动</a></li>
             <li role="separator" class="divider"></li>
@@ -248,72 +252,85 @@
 </footer>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog " style="width:700px">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel"><div><h2>用户信息</h2></div></h4>
-      </div>
-      <div class="modal-body">
-        <div style="padding: 20px 20px 20px 20px;">
-          <form class="bs-example bs-example-form" role="form" action="StudentLogin.action" method="post">
-           <div class="container" style="font-size:large">
-              <div class="row">
-                  <div class="col-lg-1"></div>
-                <div class="col-lg-2 text-right" >用户名： </div>
-                <input  class="eee" type="text"  value="admin"  maxlength="10" readonly>
+    <div class="modal-dialog " style="width:700px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel"><div><h2>用户信息</h2></div></h4>
+            </div>
+            <div class="modal-body">
+                <div style="padding: 20px 20px 20px 20px;">
+                    <form class="bs-example bs-example-form" role="form" action="/StudentInfo" method="post"id="modifyForm">
+                        <div class="container" style="font-size:large">
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-2 text-right" >用户名： </div>
+                                <span id="userId"></span>
+                                <input   type="text" id="userIdtest" value=""  maxlength="10" style="display: none">
 
-              </div>
-<br>
-              <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-2 text-right" >姓名：</div>
-                <input class="eee" type="text"  value="admin"  maxlength="10" readonly>
-              </div>
-             <br>
-              <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-2 text-right"> 班级：</div>
-                <input  class="eee" type="text"  value="admin"  maxlength="10" readonly>
-              </div>
-             <br>
-              <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-2 text-right">QQ：</div>
-                <input class="eee" type="text"  value="admin"  maxlength="10" readonly>
-              </div>
-             <br>
-              <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-2 text-right"> 鲜花数：</div>
-                <input class="eee" type="text"  value="admin"  maxlength="10" readonly>
-              </div>
-             <br>
-              <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-2 text-right">个性签名：</div>
-                <input class="eee" type="text"  value="admin"  maxlength="10" readonly>
-              </div>
-             <br>
-              <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-2 text-right">上次登录时间：</div>
-                <input class="eee" type="text"  value="admin"  maxlength="10" readonly>
-              </div>
-             <br>
-             <div class="row">
-               <div class="col-lg-2"></div>
-               <div class="col-lg-2"><a class="btn btn-default btn-lg"  role="button" >修改</a></div>
-               <div class="col-lg-8"><a class="btn btn-default btn-lg"  role="button" >退出</a></div>
-
-             </div>
-           </div>
-          </form>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-2 text-right" >姓名：</div>
+                                <span id="userName"></span>
+                                <input  type="text" id="userNametest"   maxlength="30" style="display: none" oninput="CheckInfoFormat()">
+                                <span id="nameFormat"></span>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-2 text-right"> 班级：</div>
+                                <span id="userClass"></span>
+                                <input   type="text" id="userClasstest"   maxlength="30" style="display: none"oninput="CheckInfoFormat()">
+                                <span id="classFormat"></span>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-2 text-right">QQ：</div>
+                                <span id="userQQ"></span>
+                                <input  type="text" id="userQQtest" value=""  maxlength="30" style="display: none"oninput="CheckInfoFormat()">
+                                <span id="qqFormat"></span>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-2 text-right"> 鲜花数：</div>
+                                <span id="userFlower"></span>
+                                <input  type="text" id="userFlowertest" value=""  maxlength="10" style="display: none">
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-2 text-right">个性签名：</div>
+                                <span id="userSay" ></span>
+                                <input  type="text" id="userSaytest" value="" maxlength="255" style="display: none"oninput="CheckInfoFormat()">
+                                <span id="sayFormat"></span>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-2 text-right">上次登录时间：</div>
+                                <span id="loginTime"></span>
+                                <input  type="text" id="loginTimetest" value=""  maxlength="10" style="display: none">
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-2"></div>
+                                <div class="col-lg-2">
+                                    <a class="btn btn-default btn-lg"  role="button" onclick="changeOrderTime()" id="changeOrderTime">修改</a>
+                                    <a class="btn btn-default btn-lg" role="button" style="display:none" id="timeChangeOK" onclick="ModifyEnter()" >提交</a>
+                                    <a class="btn btn-default btn-lg" role="button" disabled="false" style="display:none" id="noSubmit">提交</a>
+                                </div>
+                                <div class="col-lg-8"><a class="btn btn-default btn-lg"  role="button" >退出</a></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-
-      </div>
     </div>
-  </div><!-- /.modal-content -->
 </div>
 <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog " style="width:600px " >
