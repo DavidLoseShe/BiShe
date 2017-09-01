@@ -119,3 +119,6 @@ function SaveLoginTime(){
 function clear1(){
     $("#message").html("");
 }
+function forgetpassword(){
+
+}

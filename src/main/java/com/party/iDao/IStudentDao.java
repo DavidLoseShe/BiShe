@@ -12,6 +12,7 @@ public interface IStudentDao {
     boolean SendFlowers(String studentId);
     Date CheckLoginTimeDao(String studentId);
     String QueryStudentNameDao(String studentId);
+    boolean ModifyStudentPassDao(String studentId,String studentPassword);
     //qi
     boolean addNewUser(String studentId,String studentPassword);
 }

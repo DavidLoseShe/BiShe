@@ -19,6 +19,7 @@ public class StudentInfoController {
     private StudentInfoService studentInfoService;
     @Autowired
     private StudentService studentService;
+
     @ResponseBody
     @RequestMapping("StudentInfo")
     public StudentInformation QueryStudentInfo(HttpSession session){

@@ -60,6 +60,11 @@ public class StudentService implements IStudentService{
         return studentDao.QueryStudentNameDao(studentId);
     }
 
+    @Override
+    public boolean ModifyStudentPass(String studentId, String studentPassword) {
+         return   studentDao.ModifyStudentPassDao(studentId,studentPassword);
+    }
+
     //qi
     public boolean addNewUser(String studentId,String studentPassword){
         return studentDao.addNewUser(studentId,studentPassword);

@@ -9,6 +9,7 @@ public interface IStudentService {
     boolean SaveLoginTimeService(String studentId);
     boolean SendFlowerService(String studentId);
     String QueryStudentNameService(String studentId);
+    boolean ModifyStudentPass(String studentId,String studentPassword);
     //qi
     boolean addNewUser(String studentId,String studentPassword);
 }

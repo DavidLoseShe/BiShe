@@ -82,6 +82,18 @@ public class StudentDao implements IStudentDao{
         return studentinformation.getStudentName();
     }
 
+    @Override
+    public boolean ModifyStudentPassDao(String studentId, String studentPassword) {
+        Session session=getCurrentSession();
+        StudentInformation studentinformation = (StudentInformation) session.get(StudentInformation.class,studentId);
+        studentinformation.setStudentPassword(studentPassword);
+        Transaction trans = session.beginTransaction();
+        session.update(studentinformation);
+        trans.commit();
+        session.close();
+        return true;
+    }
+
     //qi
     public boolean addNewUser(String studentId,String studentPassword){
         Session session=getCurrentSession();

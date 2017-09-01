@@ -101,7 +101,7 @@
                             <div class="col-lg-6">
                                 <div class="checkbox">
                                     <label>
-                                        <a>忘记密码</a>
+                                        <a data-toggle="modal"href="#" role="button" data-target="#ForgetPasswordForm">忘记密码</a>
                                     </label>
                                 </div>
                             </div>
@@ -151,10 +151,10 @@
                             <div class=" col-lg-6">
                                 <input type="submit" class="btn btn-block" value="登录">
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-6">s
                                 <div class="checkbox">
                                     <label>
-                                        <a>忘记密码</a>
+                                        <a >忘记密码</a>
                                     </label>
                                 </div>
                             </div>
@@ -181,11 +181,11 @@
             </div>
             <div class="modal-body">
                 <div style="padding: 20px 20px 20px 20px;">
-                    <form class="bs-example bs-example-form" role="form" action="/Register.do" method="post">
+                    <form class="bs-example bs-example-form" role="form"  method="post">
                         <div class="row">
                             <div class="col-lg-8">
                                 <div class="input-group input-group-lg">
-                                    <input type="text" class="form-control "  maxlength="20" name="regUserName" placeholder="请输入账户名 " onblur="checkRegister()" onkeydown="clear1()">
+                                    <input type="text" class="form-control "  maxlength="20" name="regUserName" placeholder="请输入账户名 " onblur="checkRegister() ">
                                 </div><!-- /input-group -->
                             </div>
                             <div class="col-lg-4" >
@@ -196,7 +196,7 @@
                         <div class="row">
                             <div class="col-lg-8">
                                 <div class="input-group input-group-lg">
-                                    <input type="password" class="form-control "  maxlength="20" name="regPassword" placeholder="请输入密码" onkeydown="clear1()">
+                                    <input type="password" class="form-control "  maxlength="20" name="regPassword" placeholder="请输入密码 ">
                                 </div>
                             </div>
                         </div>
@@ -204,17 +204,71 @@
                         <div class="row">
                             <div class="col-lg-8">
                                 <div class="input-group input-group-lg">
-                                    <input type="password" class="form-control " value="" maxlength="20" name="regpasswordenter" placeholder="请确认密码" onblur="enterPassword()" onkeydown="clear1()">
+                                    <input type="password" class="form-control " value="" maxlength="20" name="regpasswordenter" placeholder="请确认密码" onblur="enterPassword()" >
                                 </div>
                             </div>
                             <div class="col-lg-4" >
                                 <div style="height: 4em!important; display:flex;justify-content: center; align-items: center;"><p style=" font-size:6px " id="regpasswordmessage"></p></div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="input-group input-group-lg">
+                                    <input type="text" class="form-control " value="" maxlength="20" name="email" placeholder="请输入邮箱">
+                                </div>
+                            </div>
+                            <div class="col-lg-4" >
+                                <div style="height: 4em!important; display:flex;justify-content: center; align-items: center;"><a href="#" onclick="validateEmail()" id="states">验证邮箱</a></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="input-group input-group-lg">
+                                    <input type="text" class="form-control " value="" maxlength="20" name="validate" placeholder="请输入验证码">
+                                </div>
+                            </div>
+                            <div class="col-lg-4" >
+                                <div style="height: 4em!important; display:flex;justify-content: center; align-items: center;"><p style=" font-size:6px " id="message3"> 123</p></div>
+                            </div>
+                        </div>
                         <br>
                         <div class="row">
                             <div class=" col-lg-12">
-                                <input type="submit" class="btn btn-block" onclick="" value="注册">
+                                <input type="button" class="btn btn-block" onclick="Register()" value="注册">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+//忘记密码
+<div class="modal fade" id="ForgetPasswordForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog " style="width:400px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabe4"><div><h2>忘记密码</h2></div></h4>
+            </div>
+            <div class="modal-body">
+                <div style="padding: 20px 20px 20px 20px;">
+                    <form class="bs-example bs-example-form" role="form" action="/SendHref.do" method="post">
+                        <div class="row">
+                          <p >  请输入您想要重置的用户名：</p><br>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="input-group input-group-lg">
+                                    <input type="text" class="form-control "  maxlength="20" name="username" placeholder="请输入账户名 " onblur="" >
+                                </div><!-- /input-group -->
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class=" col-lg-12">
+                                <input type="submit" class="btn btn-block"  value="重置密码">
                             </div>
                         </div>
                     </form>

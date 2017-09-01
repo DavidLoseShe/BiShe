@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 /**
  * Created by guhao on 2017/8/24.
@@ -24,5 +25,5 @@ public class RemarkInformation {
     @Column(name = "remarkContent", nullable = true, length = 255)
     private String remarkContent;
     @Column(name = "remarkTime", nullable = true, length = 255)
-    private String remarkTime;
+    private Date remarkTime;
 }

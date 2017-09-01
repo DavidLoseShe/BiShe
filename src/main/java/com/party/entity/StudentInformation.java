@@ -31,7 +31,8 @@ public class StudentInformation {
     private String studentSay;
     @Column(name = "Studentflower", nullable = true)
     private Integer studentflower;
-
+    @Column(name = "StudentEmail", nullable = true, length = 255)
+    private String studentEmail;
     @Column(name = "StudentLoginTime", nullable = true)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date studentLoginTime;
