@@ -9,7 +9,7 @@
 <title>Bootstrap Real Estate Website Template</title>
 
 <!-- Bootstrap -->
-<link rel="stylesheet" href="bootstrap-3.3.7/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bootstrap-3.3.7/dist/css/bootstrap.css">
     <link rel="stylesheet" href="css/sweetalert.css">
     <link href="css/toastr.css" rel="stylesheet"/>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -19,6 +19,7 @@
     <script src="js/ActivityJs.js"></script>
     <script src="js/toastr.js"></script>
     <script src="js/sweetalert.min.js"></script>
+    <script src="js/Student.js"></script>
 <%--  <style type="text/css">
     *{ margin: 0; padding: 0; }
     body,html{ height: 100%;
@@ -58,7 +59,7 @@
         <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id ="user"> <span class="caret"></span></a>
           <ul class="dropdown-menu">
               <li><a href="Javascript: void(0)" data-toggle="modal" data-target="#myModal"  onclick="QueryPersonalInfo()">个人信息</a></li>
-            <li><a href="#">修改密码</a></li>
+              <li><a href="#"data-toggle="modal" data-target="#modifyPassModal">修改密码</a></li>
             <li><a href="PersonActivity.jsp">个人发布活动</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="welcome.jsp" onclick="exitSystem()">退出系统</a></li>
@@ -416,6 +417,62 @@
         </div>
     </div><!-- /.modal-content -->
 </div>
+//QI
+<div class="modal fade" id="modifyPassModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog " style="width:600px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabe4"><div><h2>修改密码</h2></div></h4>
+            </div>
+            <div class="modal-body">
+                <div style="padding: 5px 5px 5px 5px;">
+                    <form class="bs-example bs-example-form" role="form" action="" method="post">
+                        <div class="container" style="font-size:large">
+                            <%--<div class="row">--%>
+                            <%--<div class="col-lg-1"></div>--%>
+                            <%--<div class="col-lg-2 text-right" >用户名： </div>--%>
+                            <%--<input  class="" type="text"  maxlength="10" readonly>--%>
+                            <%--</div>--%>
+                            <br>
+                            <div class="row">
+                                <%--<div class="col-lg-1"></div>--%>
+                                <div class="col-lg-2 text-right" >原密码：</div>
+                                <div class="col-lg-2">
+                                    <input class="" type="password" maxlength="10"  id="OldPassword">
+                                </div>
+                                <div class="col-lg-2 text-center"id="OldPasswordTiShi"></div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <%--<div class="col-lg-1"></div>--%>
+                                <div class="col-lg-2 text-right"> 新密码：</div>
+                                <div class="col-lg-2">
+                                    <input  class="" type="password"  maxlength="10" id="NewPassword" oninput="CheckStudentPassFormat()">
+                                </div>
+                                <div class="col-lg-2 text-center"id="NewPasswordTiShi"></div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <%--<div class="col-lg-1"></div>--%>
+                                <div class="col-lg-2 text-right">确认密码：</div>
+                                <div class="col-lg-2"> <input class="" type="password"  minlength="6" id="EnterPassword" oninput="CheckStudentPassSame()">
+                                </div>
+                                <div class="col-lg-2 text-center"  id="PasswordSameTiShi"></div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-2"><a class="btn btn-default btn-lg"  role="button"onclick="checkStudentPass()" >修改</a></div>
+                                <div class="col-lg-4"><a class="btn btn-default btn-lg"  role="button" onclick="closemodifyPassModal()">退出</a></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
+            </div>
+        </div>
+    </div><!-- /.modal-content -->
+</div>
 </body>
 </html>

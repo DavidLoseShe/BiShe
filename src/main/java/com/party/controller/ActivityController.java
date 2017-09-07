@@ -32,5 +32,11 @@ public class ActivityController {
       int  page= activityService.getPage( activityType,activityState,activityRelation,studentId);
       return page;
     }
-
+    @ResponseBody
+    @RequestMapping("personActivityInfo")
+    public List<ActivityInformation> QueryPersonActivityInfo(HttpSession session){
+        String studentId= (String) session.getAttribute("User");
+        List<ActivityInformation>activityInformationList=activityService.QueryPersonActivityInfo(studentId);
+        return activityInformationList;
+    }
 }

@@ -19,7 +19,7 @@ public class ActivityDao implements IActivityDao{
     @Autowired
     private SessionFactory sessionFactory;
     private Session getCurrentSession() {
-        return this.sessionFactory.openSession();
+        return this.sessionFactory.getCurrentSession();
     }
     public int GetPage( String activityType,String activityState,String activityRelation,String peopleid){
         int recordCount=0,t1=0,t2=0;
@@ -40,7 +40,6 @@ public class ActivityDao implements IActivityDao{
         if(t1 != 0){
             t2=t2+1;
         }
-        session.close();
         return t2;
     }
 
@@ -72,7 +71,6 @@ public class ActivityDao implements IActivityDao{
             }
 
         }
-        session.close();
         return activityInformationList;
 
     }
@@ -82,10 +80,15 @@ public class ActivityDao implements IActivityDao{
         Session session=getCurrentSession();
         Query query=   session.createQuery("from ActivityInformation");
         List<ActivityInformation> activityInformationList =query.list();
-        session.close();
         return activityInformationList;
     }
-
+    //QI
+    public List<ActivityInformation> QueryPersonActivityInfo(String studentId) {
+        Session session=getCurrentSession();
+        Query query=session.createQuery("from ActivityInformation where studentId='"+studentId+"'");
+        List<ActivityInformation> activityInformationList= query.list();
+        return activityInformationList;
+    }
     public void flush() {
         getCurrentSession().flush();
     }

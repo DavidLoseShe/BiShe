@@ -7,4 +7,5 @@ import com.party.entity.Student;
  */
 public interface ITestService {
     Student query();
+    void save();
 }

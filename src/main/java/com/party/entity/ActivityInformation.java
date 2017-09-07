@@ -41,8 +41,8 @@ public class ActivityInformation {
     @Column(name = "ActivityTime", nullable = true, length = 255)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date activityTime;
-    @Column(name = "ActivityPeopleId", nullable = true, length = 255)
-    private String activityPeopleId;
+    @Column(name = "studentId", nullable = true, length = 255)
+    private String studentId;
     @Column(name = "ActivityState", nullable = true, length = 255)
     private String activityState;
 }

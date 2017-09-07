@@ -45,7 +45,10 @@
                 <prop key="hibernate.dialect">${hibernate.dialect}</prop>   <!--指定数据库方言-->
                 <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>     <!--在控制台显示执行的数据库操作语句-->
                 <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>     <!--在控制台显示执行的数据哭操作语句（格式）-->
+<!--             &lt;!&ndash;   * 如果使用的是本地事务（jdbc事务）&ndash;&gt;
                 <prop key="hibernate.current_session_context_class">thread</prop>
+             &lt;!&ndash;   * 如果使用的是全局事务（jta事务）&ndash;&gt;
+                <prop key="hibernate.current_session_context_class">jta</prop>-->
             </props>
         </property>
     </bean>
@@ -53,8 +56,9 @@
     <!-- 事物管理器配置  -->
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
-
     </bean>
+    <!-- 使用annotation定义事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
     <import resource="classpath:META-INF/spring-mail.xml"/>
 
 </beans>

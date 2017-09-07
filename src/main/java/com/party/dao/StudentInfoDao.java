@@ -4,7 +4,6 @@ import com.party.entity.StudentInformation;
 import com.party.iDao.IStudentInfoDao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -21,7 +20,6 @@ public class StudentInfoDao implements IStudentInfoDao{
     public StudentInformation QueryStudentInfo(String studentId){
         Session session= getCurrentSession();
         StudentInformation studentinformation= (StudentInformation) session.get(StudentInformation.class,studentId);
-        session.close();
         return  studentinformation;
     }
     public boolean ModifyStudentInfo(String studentId,String studentName,
@@ -32,10 +30,7 @@ public class StudentInfoDao implements IStudentInfoDao{
         studentinformation.setStudentClass(studentClass);
         studentinformation.setStudentName(studentName);
         studentinformation.setStudentSay(studentSay);
-        Transaction transaction=session.beginTransaction();
         session.update(studentinformation);
-        transaction.commit();
-        session.close();
         return true;
     }
 

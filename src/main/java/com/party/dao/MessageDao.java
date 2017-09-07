@@ -25,7 +25,6 @@ public class MessageDao implements IMessageDao {
 /*        query.setParameter(1,id);*/
         Long aLong=(Long)query.uniqueResult();
         int MessageAmount=aLong.intValue();
-        session.close();
         return MessageAmount;
     }
 }

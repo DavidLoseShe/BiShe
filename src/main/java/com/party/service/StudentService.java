@@ -4,6 +4,7 @@ import com.party.dao.StudentDao;
 import com.party.iService.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -12,6 +13,7 @@ import java.util.Date;
  * Created by guhao on 2017/8/24.
  */
 @Service
+@Transactional
 public class StudentService implements IStudentService{
 
     @Autowired
@@ -69,4 +71,5 @@ public class StudentService implements IStudentService{
     public boolean addNewUser(String studentId,String studentPassword){
         return studentDao.addNewUser(studentId,studentPassword);
     }
+
 }

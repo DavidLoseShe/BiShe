@@ -5,11 +5,13 @@ import com.party.entity.StudentInformation;
 import com.party.iService.IStudentInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by 28223 on 2017/8/24.
  */
 @Service
+@Transactional
 public class StudentInfoService implements IStudentInfoService {
     @Autowired
     private StudentInfoDao studentInfoDao;
